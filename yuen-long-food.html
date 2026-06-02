@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-HK">
 <head>
   <meta charset="utf-8" />
@@ -108,17 +108,64 @@
       border-color: var(--brand);
       font-weight: 600;
     }
+    /* 右上角菜色標籤 */
+    .cornerCuisine{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.04);
+      color: var(--muted);
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .cornerCuisine.cat-日式{ background: rgba(225,112,85,0.12); color: #c0392b; }
+    .cornerCuisine.cat-西式{ background: rgba(9,132,227,0.12); color: #0742a3; }
+    .cornerCuisine.cat-港式{ background: rgba(253,203,110,0.18); color: #b8860b; }
+    .cornerCuisine.cat-韓式{ background: rgba(108,92,231,0.12); color: #4a3fb8; }
+    .cornerCuisine.cat-泰式{ background: rgba(0,184,148,0.12); color: #006d5b; }
+    .cornerCuisine.cat-火鍋{ background: rgba(214,48,49,0.12); color: #b71c1c; }
+    .cornerCuisine.cat-多國{ background: rgba(9,132,227,0.12); color: #0742a3; }
+    .cornerCuisine.cat-小食{ background: rgba(0,206,201,0.12); color: #00807f; }
+    .cornerCuisine.cat-台式{ background: rgba(108,92,231,0.12); color: #4a3fb8; }
+    .cornerCuisine.cat-潮州{ background: rgba(225,112,85,0.12); color: #c0392b; }
+    .cornerCuisine.cat-滬菜{ background: rgba(225,112,85,0.12); color: #c0392b; }
+
+    /* 距離徽章 */
+    .distBadge{
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--brand-light);
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+    }
+
+    /* 美化卡片 */
     .card{
       background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px;
+      border-radius: 20px;
+      padding: 24px 20px 20px 20px;
       margin-bottom: 16px;
       border: 1px solid var(--line);
       border-left: 5px solid var(--c-other);
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
       position: relative;
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
+    }
+    .card:hover{
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
     .card:active{ transform: scale(0.98); }
     .card.cat-日式{ border-left-color: var(--c-jp); }
@@ -254,41 +301,41 @@
   <script>
     /** 資料來源：OpenRice（詳見每個餐廳 OpenRice 連結） */
     const restaurants = [
-      { "id": "proton", "name": "Proton", "category": "西式", "tags": ["西式","All Day Breakfast","咖啡店","寵物友善餐廳"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-proton-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-all-day-breakfast-r706620", "address": "元朗教育路83號地舖", "reviewCount": 452, "viewCountText": "18.3K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "mianmianjudao", "name": "麵麵俱到", "category": "港式", "tags": ["港式","日本菜","烏冬"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%BA%B5%E9%BA%B5%E4%BF%B1%E5%88%B0-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E7%83%8F%E5%86%AC-r866788", "address": "元朗鳳攸南街3號好順景大廈1座地下48號舖", "reviewCount": 155, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "childhood", "name": "稚", "category": "日式", "tags": ["日本菜"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%A8%9A-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-r506299", "address": "元朗俊賢坊18號權益大樓地下3號舖", "reviewCount": 725, "viewCountText": "22.7K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "yechuanlamen", "name": "野川拉麵の深燒食堂", "category": "日式", "tags": ["日本菜","拉麵"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%87%8E%E5%B7%9D%E6%8B%89%E9%BA%B5%E3%81%AE%E6%B7%B1%E7%87%92%E9%A3%9F%E5%A0%82-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r526693", "address": "元朗又新街40-48號榮豐大廈地下B號舖", "reviewCount": 949, "viewCountText": "14.1K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "chefs-stage-kitchen", "name": "Chef's Stage Kitchen (西菁街)", "category": "西式", "tags": ["西式"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-chefs-stage-kitchen-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r451140", "address": "元朗西菁街23號富達廣場地下52-56號舖", "reviewCount": 735, "viewCountText": "33.5K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "kumamotobeefhotpot", "name": "熊本牛鍋 (世宙商場)", "category": "日式", "tags": ["日本菜","火鍋"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%86%8A%E6%9C%AC%E7%89%9B%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%81%AB%E9%8D%8B-r698659", "address": "元朗元朗安寧路38號世宙商場地下24號舖", "reviewCount": 367, "viewCountText": "5K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "mrs-han-pot-rice", "name": "韓奶奶拌飯", "category": "韓式", "tags": ["韓國菜","韓式炸雞"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%9F%93%E5%A5%B6%E5%A5%B6%E6%8B%8C%E9%A3%AF-%E5%85%83%E6%9C%97-%E9%9F%93%E5%9C%8B%E8%8F%9C-%E9%9F%93%E7%87%92-r880632", "address": "元朗鳳攸南街3號好順景大廈1座地下3號舖", "reviewCount": 95, "viewCountText": "6K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "pattaya-thai-house", "name": "芭堤雅泰國餐館", "category": "泰式", "tags": ["泰國菜","海鮮"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%8A%AD%E5%A0%A4%E9%9B%85%E6%B3%B0%E5%9C%8B%E9%A4%90%E9%A4%A8-%E5%85%83%E6%9C%97-%E6%B3%B0%E5%9C%8B%E8%8F%9C-%E6%B5%B7%E9%AE%AE-r173312", "address": "元朗安樂路1-11號明珠樓地下1號舖", "reviewCount": 294, "viewCountText": "9K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "gungchethaifood", "name": "公車泰國餐廰", "category": "泰式", "tags": ["泰國菜","咖喱"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%85%AC%E8%BB%8A%E6%B3%B0%E5%9C%8B%E9%A4%90%E5%BB%B3-%E5%85%83%E6%9C%97-%E6%B3%B0%E5%9C%8B%E8%8F%9C-%E5%92%96%E5%96%B1-r704720", "address": "元朗", "reviewCount": null, "viewCountText": "8K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "niku-niku-oh-kome", "name": "肉肉大米", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%82%89%E8%82%89%E5%A4%A7%E7%B1%B3-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r1127701", "address": "元朗形點 I", "reviewCount": 16, "viewCountText": "209", "isNew": true, "updatedAt": "2026-06-02" },
-      { "id": "big-boils-club", "name": "大滾友火鍋", "category": "港式", "tags": ["港式","火鍋"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%A4%A7%E6%BB%BE%E5%8F%8B%E7%81%AB%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E7%81%AB%E9%8D%8B-r557864", "address": "元朗鳳攸南街9號好順利大廈一座地下G4-G5號舖", "reviewCount": 854, "viewCountText": "22K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "brava-java-coffee", "name": "BRAVA JAVA COFFEE & CO.", "category": "西式", "tags": ["西式","咖啡店"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-brava-java-coffee-co-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r740700", "address": "元朗西菁街23號富達廣場地下118號舖", "reviewCount": 333, "viewCountText": "10K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "deluxe-daieiki", "name": "極尚大瀛喜日本料理", "category": "日式", "tags": ["日本菜","任食","放題"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%A5%B5%E5%B0%9A%E5%A4%A7%E7%80%9B%E5%96%9C%E6%97%A5%E6%9C%AC%E6%96%99%E7%90%86-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E4%BB%BB%E9%A3%9F-%E6%94%BE%E9%A1%8C-r549559", "address": "元朗朗日路9號形點 I L2樓2001a號舖", "reviewCount": 633, "viewCountText": "29.7K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "tera", "name": "TERA (形點 I)", "category": "西式", "tags": ["西式","甜品","糖水"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-tera-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-%E7%94%9C%E5%93%81-%E7%B3%96%E6%B0%B4-r776749", "address": "元朗元龍街9號形點 I L1樓1075號舖", "reviewCount": 418, "viewCountText": "11.9K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "le-ta-su", "name": "LE-TA-SU 一人一鍋", "category": "日式", "tags": ["日本菜","火鍋"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-le-ta-su-%E4%B8%80%E4%BA%BA%E4%B8%80%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%81%AB%E9%8D%8B-r999021", "address": "元朗朗日路9號形點 I 1樓1023-1025號舖", "reviewCount": 18, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "chilli-lime", "name": "Chilli Lime (形點 I)", "category": "多國", "tags": ["多國菜"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-chilli-lime-%E5%85%83%E6%9C%97-%E5%A4%9A%E5%9C%8B%E8%8F%9C-r707322", "address": "元朗元龍街9號形點 I G樓G007號舖", "reviewCount": 326, "viewCountText": "17.2K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "phi-coffee-pancake", "name": "PHI Coffee & Pancake (形點 II)", "category": "西式", "tags": ["西式","All Day Breakfast"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-phi-coffee-pancake-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-%E6%97%A9%E5%8D%88%E9%A4%90-r867739", "address": "元朗朗日路8號形點 II L3樓A315b號舖", "reviewCount": 123, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "terrace-in-seaside", "name": "Terrace in seaside (形點 I)", "category": "韓式", "tags": ["韓國菜","西式"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-terrace-in-seaside-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r772170", "address": "元朗朗日路9號形點 I L2樓2056號舖", "reviewCount": 260, "viewCountText": "10K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "chiu-ting", "name": "潮庭 (形點 I)", "category": "潮州", "tags": ["潮州菜","粥品"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%BD%AE%E5%BA%AD-%E5%85%83%E6%9C%97-%E6%BD%AE%E5%B7%9E%E8%8F%9C-%E7%B2%A5%E5%93%81-r896951", "address": "元朗朗日路9號形點 I L1樓1035號舖", "reviewCount": 1, "viewCountText": "607", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "kan-ju", "name": "簡.聚", "category": "多國", "tags": ["多國菜","酒"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%B0%A1-%E8%81%9A-%E5%85%83%E6%9C%97-%E5%A4%9A%E5%9C%8B%E8%8F%9C-%E9%85%92-r836747", "address": "元朗元朗安寧路172-190號安寧樓地下A號舖", "reviewCount": 213, "viewCountText": "5K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "bushi-cuisine", "name": "武士料理", "category": "日式", "tags": ["日本菜","拉麵"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%AD%A6%E5%A3%AB%E6%96%99%E7%90%86-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r774779", "address": "元朗裕榮徑11號好旺大廈地下6號舖", "reviewCount": 94, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "pause-it", "name": "PAUSE IT", "category": "西式", "tags": ["西式","All Day Breakfast"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-pause-it-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-all-day-breakfast-r869807", "address": "元朗朗樂路1號元點L1樓B120號舖", "reviewCount": 246, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "rou-yu", "name": "肉慾", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%82%89%E6%85%BE-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r865606", "address": "元朗建德街71號地舖", "reviewCount": 13, "viewCountText": "4K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "que", "name": "QUE", "category": "西式", "tags": ["西式"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-que-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r827635", "address": "元朗", "reviewCount": 36, "viewCountText": "3.4K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "yakiniku-kakura", "name": "YAKINIKU KAKURA", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-yakiniku-kakura-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r868690", "address": "元朗", "reviewCount": 253, "viewCountText": "1.5K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "niuren-taiwan-hotpot", "name": "牛大人台灣火鍋吃到飽 (元朗)", "category": "台式", "tags": ["台灣菜","任食","放題"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%89%9B%E5%A4%A7%E4%BA%BA%E5%8F%B0%E7%81%A3%E7%81%AB%E9%8D%8B%E5%90%83%E5%88%B0%E9%A3%BD-%E5%85%83%E6%9C%97-%E5%8F%B0%E7%81%A3%E8%8F%9C-%E4%BB%BB%E9%A3%9F-%E6%94%BE%E9%A1%8C-r752753", "address": "元朗", "reviewCount": 323, "viewCountText": "4.9K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "zui-lai-xian", "name": "醉辣鮮", "category": "港式", "tags": ["港式","海鮮"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%86%89%E8%BE%A3%E9%AE%AE-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E6%B5%B7%E9%AE%AE-r705797", "address": "元朗", "reviewCount": 205, "viewCountText": "12.6K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "yu-iron-plate", "name": "譽 鐵板燒", "category": "日式", "tags": ["日本菜","鐵板燒"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%AD%BD-%E9%90%B5%E6%9D%BF%E7%87%92-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E9%90%B5%E6%9D%BF%E7%87%92-r715200", "address": "元朗", "reviewCount": 129, "viewCountText": "7.4K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "xiangjiaozi", "name": "香蕉仔", "category": "港式", "tags": ["港式"], "rating": null, "price": "$50以下", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%A6%99%E8%95%89%E4%BB%94-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-r871334", "address": "元朗", "reviewCount": 19, "viewCountText": "1.5K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "jia-shang-hai", "name": "家上海 (形點)", "category": "滬菜", "tags": ["滬菜","上海"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%AE%B6%E4%B8%8A%E6%B5%B7-%E5%85%83%E6%9C%97-%E6%BB%AC%E8%8F%9C-%E4%B8%8A%E6%B5%B7-r462740", "address": "元朗朗日路9號形點 I", "reviewCount": null, "viewCountText": null, "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "one-vegan-shop", "name": "一素店 (One Vegan Shop)", "category": "西式", "tags": ["西式","素食","有機食品"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-one-vegan-shop-yuen-long-western-organic-food-r763026", "address": "元朗又新街35號怡豐大廈地下12號舖", "reviewCount": null, "viewCountText": null, "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "nogawa", "name": "野川拉麵の深燒食堂", "category": "日式", "tags": ["日本菜","拉麵","串燒"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%87%8E%E5%B7%9D%E6%8B%89%E9%BA%B5%E3%81%AE%E6%B7%B1%E7%87%92%E9%A3%9F%E5%A0%82-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r526693/", "address": "元朗又新街40-48號榮豐大廈地下B號舖", "reviewCount": 1044, "viewCountText": "14.1K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "tongsiu", "name": "堂小二 (Tong Siu Yi)", "category": "小食", "tags": ["港式","小食","外賣"], "rating": null, "price": "$50以下", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-tong-siu-yi-yuen-long-hong-kong-style-r656953/", "address": "元朗港鐵元朗站YUL 25號舖", "reviewCount": 75, "viewCountText": "336", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "milkcafe", "name": "牛奶冰室 (形點 II)", "category": "港式", "tags": ["港式","茶餐廳"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-milk-cafe-yuen-long-hong-kong-style-r791155/", "address": "元朗朗日路8號形點 II L1樓A101號舖", "reviewCount": 44, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
-      { "id": "itamama", "name": "Itamama (形點 II)", "category": "西式", "tags": ["西式","Pizza","咖啡店"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-itamama-yuen-long-western-pizza-r720355/", "address": "元朗朗日路8號形點 II L2樓A201-A202號舖", "reviewCount": 54, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" }
+      { "id": "proton", "lat": 22.4445, "lng": 114.0220, "name": "Proton", "category": "西式", "tags": ["西式","All Day Breakfast","咖啡店","寵物友善餐廳"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-proton-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-all-day-breakfast-r706620", "address": "元朗教育路83號地舖", "reviewCount": 452, "viewCountText": "18.3K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "mianmianjudao", "lat": 22.4410, "lng": 114.0190, "name": "麵麵俱到", "category": "港式", "tags": ["港式","日本菜","烏冬"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%BA%B5%E9%BA%B5%E4%BF%B1%E5%88%B0-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E7%83%8F%E5%86%AC-r866788", "address": "元朗鳳攸南街3號好順景大廈1座地下48號舖", "reviewCount": 155, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "childhood", "lat": 22.4450, "lng": 114.0230, "name": "稚", "category": "日式", "tags": ["日本菜"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%A8%9A-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-r506299", "address": "元朗俊賢坊18號權益大樓地下3號舖", "reviewCount": 725, "viewCountText": "22.7K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "yechuanlamen", "lat": 22.4455, "lng": 114.0205, "name": "野川拉麵の深燒食堂", "category": "日式", "tags": ["日本菜","拉麵"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%87%8E%E5%B7%9D%E6%8B%89%E9%BA%B5%E3%81%AE%E6%B7%B1%E7%87%92%E9%A3%9F%E5%A0%82-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r526693", "address": "元朗又新街40-48號榮豐大廈地下B號舖", "reviewCount": 949, "viewCountText": "14.1K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "chefs-stage-kitchen", "lat": 22.4435, "lng": 114.0185, "name": "Chef's Stage Kitchen (西菁街)", "category": "西式", "tags": ["西式"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-chefs-stage-kitchen-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r451140", "address": "元朗西菁街23號富達廣場地下52-56號舖", "reviewCount": 735, "viewCountText": "33.5K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "kumamotobeefhotpot", "lat": 22.4470, "lng": 114.0175, "name": "熊本牛鍋 (世宙商場)", "category": "日式", "tags": ["日本菜","火鍋"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%86%8A%E6%9C%AC%E7%89%9B%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%81%AB%E9%8D%8B-r698659", "address": "元朗元朗安寧路38號世宙商場地下24號舖", "reviewCount": 367, "viewCountText": "5K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "mrs-han-pot-rice", "lat": 22.4410, "lng": 114.0190, "name": "韓奶奶拌飯", "category": "韓式", "tags": ["韓國菜","韓式炸雞"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%9F%93%E5%A5%B6%E5%A5%B6%E6%8B%8C%E9%A3%AF-%E5%85%83%E6%9C%97-%E9%9F%93%E5%9C%8B%E8%8F%9C-%E9%9F%93%E7%87%92-r880632", "address": "元朗鳳攸南街3號好順景大廈1座地下3號舖", "reviewCount": 95, "viewCountText": "6K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "pattaya-thai-house", "lat": 22.4460, "lng": 114.0210, "name": "芭堤雅泰國餐館", "category": "泰式", "tags": ["泰國菜","海鮮"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%8A%AD%E5%A0%A4%E9%9B%85%E6%B3%B0%E5%9C%8B%E9%A4%90%E9%A4%A8-%E5%85%83%E6%9C%97-%E6%B3%B0%E5%9C%8B%E8%8F%9C-%E6%B5%B7%E9%AE%AE-r173312", "address": "元朗安樂路1-11號明珠樓地下1號舖", "reviewCount": 294, "viewCountText": "9K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "gungchethaifood", "lat": 22.4456, "lng": 114.0229, "name": "公車泰國餐廰", "category": "泰式", "tags": ["泰國菜","咖喱"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%85%AC%E8%BB%8A%E6%B3%B0%E5%9C%8B%E9%A4%90%E5%BB%B3-%E5%85%83%E6%9C%97-%E6%B3%B0%E5%9C%8B%E8%8F%9C-%E5%92%96%E5%96%B1-r704720", "address": "元朗", "reviewCount": null, "viewCountText": "8K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "niku-niku-oh-kome", "lat": 22.4415, "lng": 114.0160, "name": "肉肉大米", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%82%89%E8%82%89%E5%A4%A7%E7%B1%B3-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r1127701", "address": "元朗形點 I", "reviewCount": 16, "viewCountText": "209", "isNew": true, "updatedAt": "2026-06-02" },
+      { "id": "big-boils-club", "lat": 22.4410, "lng": 114.0190, "name": "大滾友火鍋", "category": "港式", "tags": ["港式","火鍋"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%A4%A7%E6%BB%BE%E5%8F%8B%E7%81%AB%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E7%81%AB%E9%8D%8B-r557864", "address": "元朗鳳攸南街9號好順利大廈一座地下G4-G5號舖", "reviewCount": 854, "viewCountText": "22K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "brava-java-coffee", "lat": 22.4435, "lng": 114.0185, "name": "BRAVA JAVA COFFEE & CO.", "category": "西式", "tags": ["西式","咖啡店"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-brava-java-coffee-co-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r740700", "address": "元朗西菁街23號富達廣場地下118號舖", "reviewCount": 333, "viewCountText": "10K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "deluxe-daieiki", "lat": 22.4415, "lng": 114.0160, "name": "極尚大瀛喜日本料理", "category": "日式", "tags": ["日本菜","任食","放題"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%A5%B5%E5%B0%9A%E5%A4%A7%E7%80%9B%E5%96%9C%E6%97%A5%E6%9C%AC%E6%96%99%E7%90%86-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E4%BB%BB%E9%A3%9F-%E6%94%BE%E9%A1%8C-r549559", "address": "元朗朗日路9號形點 I L2樓2001a號舖", "reviewCount": 633, "viewCountText": "29.7K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "tera", "lat": 22.4412, "lng": 114.0165, "name": "TERA (形點 I)", "category": "西式", "tags": ["西式","甜品","糖水"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-tera-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-%E7%94%9C%E5%93%81-%E7%B3%96%E6%B0%B4-r776749", "address": "元朗元龍街9號形點 I L1樓1075號舖", "reviewCount": 418, "viewCountText": "11.9K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "le-ta-su", "lat": 22.4415, "lng": 114.0160, "name": "LE-TA-SU 一人一鍋", "category": "日式", "tags": ["日本菜","火鍋"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-le-ta-su-%E4%B8%80%E4%BA%BA%E4%B8%80%E9%8D%8B-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%81%AB%E9%8D%8B-r999021", "address": "元朗朗日路9號形點 I 1樓1023-1025號舖", "reviewCount": 18, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "chilli-lime", "lat": 22.4412, "lng": 114.0165, "name": "Chilli Lime (形點 I)", "category": "多國", "tags": ["多國菜"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-chilli-lime-%E5%85%83%E6%9C%97-%E5%A4%9A%E5%9C%8B%E8%8F%9C-r707322", "address": "元朗元龍街9號形點 I G樓G007號舖", "reviewCount": 326, "viewCountText": "17.2K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "phi-coffee-pancake", "lat": 22.4418, "lng": 114.0155, "name": "PHI Coffee & Pancake (形點 II)", "category": "西式", "tags": ["西式","All Day Breakfast"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-phi-coffee-pancake-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-%E6%97%A9%E5%8D%88%E9%A4%90-r867739", "address": "元朗朗日路8號形點 II L3樓A315b號舖", "reviewCount": 123, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "terrace-in-seaside", "lat": 22.4415, "lng": 114.0160, "name": "Terrace in seaside (形點 I)", "category": "韓式", "tags": ["韓國菜","西式"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-terrace-in-seaside-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r772170", "address": "元朗朗日路9號形點 I L2樓2056號舖", "reviewCount": 260, "viewCountText": "10K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "chiu-ting", "lat": 22.4415, "lng": 114.0160, "name": "潮庭 (形點 I)", "category": "潮州", "tags": ["潮州菜","粥品"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%BD%AE%E5%BA%AD-%E5%85%83%E6%9C%97-%E6%BD%AE%E5%B7%9E%E8%8F%9C-%E7%B2%A5%E5%93%81-r896951", "address": "元朗朗日路9號形點 I L1樓1035號舖", "reviewCount": 1, "viewCountText": "607", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "kan-ju", "lat": 22.4470, "lng": 114.0175, "name": "簡.聚", "category": "多國", "tags": ["多國菜","酒"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%B0%A1-%E8%81%9A-%E5%85%83%E6%9C%97-%E5%A4%9A%E5%9C%8B%E8%8F%9C-%E9%85%92-r836747", "address": "元朗元朗安寧路172-190號安寧樓地下A號舖", "reviewCount": 213, "viewCountText": "5K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "bushi-cuisine", "lat": 22.4458, "lng": 114.0235, "name": "武士料理", "category": "日式", "tags": ["日本菜","拉麵"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E6%AD%A6%E5%A3%AB%E6%96%99%E7%90%86-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r774779", "address": "元朗裕榮徑11號好旺大廈地下6號舖", "reviewCount": 94, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "pause-it", "lat": 22.4405, "lng": 114.0145, "name": "PAUSE IT", "category": "西式", "tags": ["西式","All Day Breakfast"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-pause-it-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-all-day-breakfast-r869807", "address": "元朗朗樂路1號元點L1樓B120號舖", "reviewCount": 246, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "rou-yu", "lat": 22.4425, "lng": 114.0215, "name": "肉慾", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%82%89%E6%85%BE-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r865606", "address": "元朗建德街71號地舖", "reviewCount": 13, "viewCountText": "4K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "que", "lat": 22.4456, "lng": 114.0229, "name": "QUE", "category": "西式", "tags": ["西式"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-que-%E5%85%83%E6%9C%97-%E8%A5%BF%E5%BC%8F-r827635", "address": "元朗", "reviewCount": 36, "viewCountText": "3.4K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "yakiniku-kakura", "lat": 22.4456, "lng": 114.0229, "name": "YAKINIKU KAKURA", "category": "日式", "tags": ["日本菜","烤肉"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-yakiniku-kakura-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E7%83%A4%E8%82%89-r868690", "address": "元朗", "reviewCount": 253, "viewCountText": "1.5K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "niuren-taiwan-hotpot", "lat": 22.4456, "lng": 114.0229, "name": "牛大人台灣火鍋吃到飽 (元朗)", "category": "台式", "tags": ["台灣菜","任食","放題"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E7%89%9B%E5%A4%A7%E4%BA%BA%E5%8F%B0%E7%81%A3%E7%81%AB%E9%8D%8B%E5%90%83%E5%88%B0%E9%A3%BD-%E5%85%83%E6%9C%97-%E5%8F%B0%E7%81%A3%E8%8F%9C-%E4%BB%BB%E9%A3%9F-%E6%94%BE%E9%A1%8C-r752753", "address": "元朗", "reviewCount": 323, "viewCountText": "4.9K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "zui-lai-xian", "lat": 22.4456, "lng": 114.0229, "name": "醉辣鮮", "category": "港式", "tags": ["港式","海鮮"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%86%89%E8%BE%A3%E9%AE%AE-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-%E6%B5%B7%E9%AE%AE-r705797", "address": "元朗", "reviewCount": 205, "viewCountText": "12.6K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "yu-iron-plate", "lat": 22.4456, "lng": 114.0229, "name": "譽 鐵板燒", "category": "日式", "tags": ["日本菜","鐵板燒"], "rating": null, "price": "$201-400", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E8%AD%BD-%E9%90%B5%E6%9D%BF%E7%87%92-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E9%90%B5%E6%9D%BF%E7%87%92-r715200", "address": "元朗", "reviewCount": 129, "viewCountText": "7.4K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "xiangjiaozi", "lat": 22.4456, "lng": 114.0229, "name": "香蕉仔", "category": "港式", "tags": ["港式"], "rating": null, "price": "$50以下", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%A6%99%E8%95%89%E4%BB%94-%E5%85%83%E6%9C%97-%E6%B8%AF%E5%BC%8F-r871334", "address": "元朗", "reviewCount": 19, "viewCountText": "1.5K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "jia-shang-hai", "lat": 22.4415, "lng": 114.0160, "name": "家上海 (形點)", "category": "滬菜", "tags": ["滬菜","上海"], "rating": null, "price": "$101-200", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E5%AE%B6%E4%B8%8A%E6%B5%B7-%E5%85%83%E6%9C%97-%E6%BB%AC%E8%8F%9C-%E4%B8%8A%E6%B5%B7-r462740", "address": "元朗朗日路9號形點 I", "reviewCount": null, "viewCountText": null, "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "one-vegan-shop", "lat": 22.4455, "lng": 114.0205, "name": "一素店 (One Vegan Shop)", "category": "西式", "tags": ["西式","素食","有機食品"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-one-vegan-shop-yuen-long-western-organic-food-r763026", "address": "元朗又新街35號怡豐大廈地下12號舖", "reviewCount": null, "viewCountText": null, "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "nogawa", "lat": 22.4455, "lng": 114.0205, "name": "野川拉麵の深燒食堂", "category": "日式", "tags": ["日本菜","拉麵","串燒"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-%E9%87%8E%E5%B7%9D%E6%8B%89%E9%BA%B5%E3%81%AE%E6%B7%B1%E7%87%92%E9%A3%9F%E5%A0%82-%E5%85%83%E6%9C%97-%E6%97%A5%E6%9C%AC%E8%8F%9C-%E6%8B%89%E9%BA%B5-r526693/", "address": "元朗又新街40-48號榮豐大廈地下B號舖", "reviewCount": 1044, "viewCountText": "14.1K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "tongsiu", "lat": 22.4430, "lng": 114.0150, "name": "堂小二 (Tong Siu Yi)", "category": "小食", "tags": ["港式","小食","外賣"], "rating": null, "price": "$50以下", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-tong-siu-yi-yuen-long-hong-kong-style-r656953/", "address": "元朗港鐵元朗站YUL 25號舖", "reviewCount": 75, "viewCountText": "336", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "milkcafe", "lat": 22.4418, "lng": 114.0155, "name": "牛奶冰室 (形點 II)", "category": "港式", "tags": ["港式","茶餐廳"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-milk-cafe-yuen-long-hong-kong-style-r791155/", "address": "元朗朗日路8號形點 II L1樓A101號舖", "reviewCount": 44, "viewCountText": "2K", "isNew": false, "updatedAt": "2026-06-02" },
+      { "id": "itamama", "lat": 22.4418, "lng": 114.0155, "name": "Itamama (形點 II)", "category": "西式", "tags": ["西式","Pizza","咖啡店"], "rating": null, "price": "$51-100", "openriceUrl": "https://www.openrice.com/zh/hongkong/r-itamama-yuen-long-western-pizza-r720355/", "address": "元朗朗日路8號形點 II L2樓A201-A202號舖", "reviewCount": 54, "viewCountText": "3K", "isNew": false, "updatedAt": "2026-06-02" }
     ];
 
     const categories = ["全部","港式","日式","西式","韓式","泰式","火鍋","多國","小食"];
@@ -367,6 +414,27 @@
       });
     }
 
+    function doGeolocation(btn){
+      if(!navigator.geolocation){
+        alert("您的瀏覽器不支援定位功能。");
+        return;
+      }
+      if(btn) btn.textContent = "📍 定位中…";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          state.sortByDist = true;
+          if(btn) btn.textContent = "📍 已按距離排序 ✓";
+          render(true);
+        },
+        (err) => {
+          alert("無法取得位置，請確保已允許位置權限。");
+          if(btn) btn.textContent = "📍 距離排序";
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    }
+
     function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
 
     function filterItems(){
@@ -432,12 +500,14 @@
       const maps = mapsUrlForAddress(r.address);
       const catClass = r.category?.replace(/[^a-zA-Z\u4e00-\u9fff]/g, '') || '其他';
       const dist = calcDist(r);
-      const distHtml = (dist !== null) ? `<div class="row" style="color:var(--brand);"><div class="k">距離</div><div class="v">${dist < 1 ? (dist*1000).toFixed(0) + "m" : dist.toFixed(1) + "km"}</div></div>` : "";
+      const distText = (dist !== null) ? (dist < 1 ? (dist*1000).toFixed(0) + "m" : dist.toFixed(1) + "km") : null;
+      const distBadgeHtml = distText ? `<span class="distBadge">📍 ${distText}</span>` : "";
+      const distRowHtml = distText ? `<div class="row" style="color:var(--brand);"><div class="k">距離</div><div class="v"><strong>${distText}</strong></div></div>` : "";
       return `
         <section class="card cat-${escapeAttr(catClass)}" data-id="${escapeAttr(r.id)}" onclick="window.open('${escapeAttr(openrice)}', '_blank')">
           <div class="cornerCuisine cat-${escapeAttr(catClass)}" title="${escapeAttr(cuisineLabel(r))}">${escapeHtml(cuisineLabel(r))}</div>
           <div class="cardTop">
-            <h2 class="name">${escapeHtml(r.name)}${r.isNew ? '<span class="newBadge">新</span>' : ''}</h2>
+            <h2 class="name">${escapeHtml(r.name)}${r.isNew ? '<span class="newBadge">新</span>' : ''}${distBadgeHtml}</h2>
           </div>
           <div class="meta">
             <div class="row"><div class="k">評分</div><div class="v"><strong>${escapeHtml(ratingText(r))}</strong> <span style="color: var(--muted);">（<a href="${escapeAttr(openrice)}" target="_blank" rel="noopener">OpenRice 連結</a>）</span></div></div>
@@ -454,7 +524,7 @@
             <div class="row"><div class="k">OpenRice</div><div class="v">食評數：${Number(r.reviewCount)||0} ｜ 瀏覽：${escapeHtml(r.viewCountText||"—")}</div></div>
             <div class="row"><div class="k">人均</div><div class="v">${escapeHtml(r.price)}</div></div>
             <div class="row"><div class="k">地址</div><div class="v"><a href="${escapeAttr(maps)}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">${escapeHtml(r.address)}</a></div></div>
-            ${distHtml}
+            ${distRowHtml}
           </div>
         </section>
       `;
@@ -506,8 +576,7 @@
       const sortBtn = document.getElementById("sortDistanceBtn");
       if(sortBtn){
         sortBtn.onclick = () => {
-          state.page = 1;
-          doGeolocation();
+          doGeolocation(sortBtn);
         };
       }
 
@@ -600,3 +669,4 @@
 
 </body>
 </html>
+
