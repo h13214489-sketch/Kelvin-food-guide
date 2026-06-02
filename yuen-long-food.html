@@ -334,6 +334,39 @@
       return `https://www.google.com/maps/search/?api=1&query=${q}`;
     }
 
+    // 元朗中心點座標
+    const YUEN_LONG_CENTER = { lat: 22.4456, lng: 114.0229 };
+    let userLocation = null;
+
+    // Haversine 公式計算距離（km）
+    function haversine(lat1, lng1, lat2, lng2){
+      const R = 6371;
+      const toRad = (d) => d * Math.PI / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
+      const a = Math.sin(dLat/2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    // 計算餐廳與用戶（或元朗中心）的距離
+    function calcDist(r){
+      if(!r.lat || !r.lng) return null;
+      const ref = userLocation || YUEN_LONG_CENTER;
+      return haversine(ref.lat, ref.lng, r.lat, r.lng);
+    }
+
+    // 按距離排序
+    function sortByDistance(items){
+      return items.slice().sort((a, b) => {
+        const da = calcDist(a);
+        const db = calcDist(b);
+        if(da === null && db === null) return 0;
+        if(da === null) return 1;
+        if(db === null) return -1;
+        return da - db;
+      });
+    }
+
     function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
 
     function filterItems(){
