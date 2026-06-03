@@ -1,4 +1,4 @@
-// 元朗美食全集 - Service Worker v1.0
+﻿// 元朗美食全集 - Service Worker v1.0
 const CACHE = "yuenlongfood-v1";
 const PRECACHE_URLS = [
   "./",
